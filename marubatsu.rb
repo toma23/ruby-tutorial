@@ -38,6 +38,9 @@ class Exe
       if input == num then
         @table[num-1] = @turn[@pos]
         @pos = !@pos
+      elsif input > 9
+        print "正しくない場所を入力しました\n"
+        break
       end
     end
   end
