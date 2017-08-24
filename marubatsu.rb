@@ -51,7 +51,7 @@ class Exe
   #対戦終了
   def finish ()
     if @count == 0 then
-      print "---------試合終了---------\n"
+      print "\n---------試合終了---------\n"
       return true
     end
   end
