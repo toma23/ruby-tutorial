@@ -35,10 +35,10 @@ class Exe
   def isLeagal (input)
     num = 0
     for num in 1..9 do
-      if input == num then
+      if input == num then  #正しい場所を入力したら
         @table[num-1] = @turn[@pos]
-        @pos = !@pos
-      elsif input > 9
+        #@pos = !@pos
+      elsif input > 9  #正しくない場所を入力したら
         print "正しくない場所を入力しました\n"
         break
       end
@@ -49,8 +49,9 @@ end
 #main
 print "〇×ゲームを始めます\n"
 exe = Exe.new(arr, turn, pos)
-exe.board
-print "場所を入力してください＞"
-input = gets.to_i  #場所の入力(数値)
-exe.isLeagal(input)
-exe.board
+while true do
+  exe.board
+  print "場所を入力してください＞"
+  input = gets.to_i  #場所の入力(数値)
+  exe.isLeagal(input)
+end
