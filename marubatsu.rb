@@ -14,3 +14,6 @@ for i in 1..9 do
     print "\n"
   end
 end
+
+print "場所を入力してください＞"
+num = gets.to_i  #場所の入力
