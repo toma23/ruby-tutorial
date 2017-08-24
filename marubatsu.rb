@@ -2,7 +2,7 @@
 
 side = 3  #一辺の長さ
 turn = ["o", "x"]  #先手，後手のマーク
-pos = 0
+pos = 0  #0→先手, 1→後手
 
 #碁盤の作成
 arr = [1, 2, 3,
@@ -37,7 +37,7 @@ class Exe
     for num in 1..9 do
       if input == num then  #正しい場所を入力したら
         @table[num-1] = @turn[@pos]
-        #@pos = !@pos
+        @pos = (@pos+1)%2
       elsif input > 9  #正しくない場所を入力したら
         print "正しくない場所を入力しました\n"
         break
@@ -49,7 +49,7 @@ end
 #main
 print "〇×ゲームを始めます\n"
 exe = Exe.new(arr, turn, pos)
-while true do
+while true do  #1回の対局をループ
   exe.board
   print "場所を入力してください＞"
   input = gets.to_i  #場所の入力(数値)
