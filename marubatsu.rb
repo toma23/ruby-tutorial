@@ -18,9 +18,9 @@ while true do
   print "場所を入力してください＞"
   input = gets.to_i  #場所の入力(数値)
   if e.legal?(input) == false then  #合法手か調べる
-    next
+    next  #合法手でなければ，碁盤に〇×を置かない（e.moveの処理をスキップする）
   end
-  e.move(input)
+  e.move(input)  #碁盤に〇×を置く
   if e.search? == true || e.count? == true then  #3つ並んだか，碁盤に置く場所がなくなったらループを抜ける
     break
   end
@@ -28,8 +28,8 @@ end
 
 #試合終了後の処理
 e.board
-if e.search? == true then
-  e.finish
-elsif e.count? == true then
-  e.draw
+if e.search? == true then  #3つ並んでいたら
+  e.finish  #どちらかが勝ったか表示
+elsif e.count? == true then  #碁盤に〇×を置く場所がなくなったら
+  e.draw  #引き分けを表示
 end
