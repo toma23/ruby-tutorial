@@ -1,6 +1,6 @@
 class Exe
   #初期化
-  def initialize(table=Array.new, turn=Array.new, pos, count)
+  def initialize(table, turn, pos, count)
     @table = table
     @turn = turn
     @pos = pos
