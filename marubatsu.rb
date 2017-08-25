@@ -20,15 +20,15 @@ while true do
   if e.legal?(input) == true then  #合法手か調べる
     break
   end
-  if e.search == true || e.count == true then  #3つ並んだか，碁盤に置く場所がなくなったらループを抜ける
+  if e.search? == true || e.count? == true then  #3つ並んだか，碁盤に置く場所がなくなったらループを抜ける
     break
   end
 end
 
 #試合終了後の処理
 e.board
-if e.search == true then
+if e.search? == true then
   e.finish
-elsif e.count == true then
+elsif e.count? == true then
   e.draw
 end
