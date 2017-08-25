@@ -1,8 +1,6 @@
-#encoding: utf-8
-
 turn = ["o", "x"]  #先手，後手のマーク
 pos = 0  #0→先手, 1→後手
-count = 9
+count = 9  #碁盤の空き数
 
 #碁盤の作成
 table = Array.new(3).map{Array.new(3, 0)}  #全体
@@ -57,7 +55,7 @@ class Exe
 
   #探索用関数
   def m_x (j, i, mark)
-    if @table[j][i] == @turn[$pos_c]
+    if @table[j][i] == @turn[$pos_c] then
       mark += 1
     end
       return mark
