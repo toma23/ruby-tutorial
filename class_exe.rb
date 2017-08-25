@@ -31,18 +31,25 @@ class Exe
       if input == num then  #正しい場所を入力したら
         if @table[(num - 1) / 3][(num - 1) % 3] == @turn[@pos] || @table[(num - 1) / 3][(num - 1) % 3] == @turn[(@pos + 1) % 2] then  #指定した場所にすでに置かれていたら
           print "指定された場所はすでに置かれています\n"
-          break
+          return false
+          #break
         else
-          @table[(num - 1) / 3][(num - 1) % 3] = @turn[@pos]  #指定された場所に〇または×を置く
-          $pos_c = @pos
-          @pos = (@pos + 1) % 2  #先手(後手)→後手(先手)に変更
-          @count -= 1
+          break
         end
       elsif input > 9  || input < 1 #正しくない場所を入力したら
         print "正しくない場所を入力しました\n"
-        break
+        return false
+       # break
       end
     end
+  end
+
+  #碁盤に〇または×を置く
+  def move (input)
+    @table[(input - 1) / 3][(input - 1) % 3] = @turn[@pos]  #指定された場所に〇または×を置く
+    $pos_c = @pos
+    @pos = (@pos + 1) % 2  #先手(後手)→後手(先手)に変更
+    @count -= 1
   end
 
   #マークの数を数える関数
