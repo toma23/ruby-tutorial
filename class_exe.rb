@@ -8,7 +8,7 @@ class Exe
   end
 
   #碁盤の表示
-  def board ()
+  def board
     print "\n"
     for i in 0..2 do
       for j in 0..2 do
@@ -54,7 +54,7 @@ class Exe
   end
 
   #3つ並んでいるか探索
-  def search? ()
+  def search?
     mark_x = 0 #横
     mark_y = 0 #縦
     mark_xy = 0 #右下斜め
@@ -117,18 +117,18 @@ class Exe
   end
 
   #対戦終了
-  def count? () #碁盤がすべて埋まったか
+  def count? #碁盤がすべて埋まったか
     if @count == 0 then 
       return true
     end
   end
 
-  def draw () #引き分け用
+  def draw #引き分け用
     print "\n---------試合終了---------\n"
     print "引き分けです\n"
   end
 
-  def finish () #どちらかが勝ったとき
+  def finish #どちらかが勝ったとき
     if @count > 0 then
       print "\n---------試合終了---------\n"
 
