@@ -68,9 +68,9 @@ class Exe
       mark_y += 1
       mark_xy += 1
       for i in 1..2 do
-        mark_x=m_x(0,i,mark_x)  #横
-        mark_y=m_x(i,0,mark_y)  #縦
-        mark_xy=m_x(i,i,mark_xy)  #斜め
+        mark_x = m_x(0,i,mark_x)  #横
+        mark_y = m_x(i,0,mark_y)  #縦
+        mark_xy = m_x(i,i,mark_xy)  #斜め
         if mark_x >= 3 || mark_y >= 3 || mark_xy >= 3 then
           return true
         end
@@ -78,19 +78,47 @@ class Exe
     elsif @table[0][1] ==  @turn[$pos_c] then  #起点
       mark_y += 1
       for i in 1..2 do
-        mark_y=m_x(0,i,mark_y)  #縦
+        mark_y = m_x(i,0,mark_y)  #縦
         if mark_y >= 3 then
           return true
         end
       end
+=begin
+    elsif @table[0][2] ==  @turn[$pos_c] then  #起点
+      mark_y += 1
+      mark_yx += 1
+      for i in 1..2 do
+        mark_y=m_x(0,i,mark_y)  #縦
+        mark_yx=m_x(i,i,mark_yx)  #斜め
+        if mark_y >= 3 then
+          return true
+        end
+      end
+=end
     end
   end
 
   #対戦終了
-  def finish ()
-    if @count == 0 then
-      print "\n---------試合終了---------\n"
+  def count () #碁盤がすべて埋まったか
+    if @count == 0 then 
       return true
+    end
+  end
+
+  def draw () #引き分け用
+    print "\n---------試合終了---------\n"
+    print "引き分けです\n"
+  end
+
+  def finish () #どちらかが勝ったとき
+    if @count > 0 then
+      print "\n---------試合終了---------\n"
+
+      if $pos_c == 0 then 
+        print "先手の勝ちです!\n"
+      elsif $pos_c == 1 then
+        print "後手の勝ちです!\n"
+      end
     end
   end
 end
@@ -102,7 +130,7 @@ exe = Exe.new(table, turn, pos, count)
 
 #1回の対局動作をループ
 while true do
-  if exe.finish == true then
+  if exe.count == true then
     break
   end
   exe.board
@@ -118,3 +146,8 @@ end
 
 #試合終了後の処理
 exe.board
+if exe.count == true then
+  exe.draw
+else
+  exe.finish
+end
