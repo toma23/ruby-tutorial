@@ -47,7 +47,7 @@ class Exe
   #碁盤に〇または×を置く
   def move (input)
     @table[(input - 1) / 3][(input - 1) % 3] = @turn[@pos]  #指定された場所に〇または×を置く
-    $pos_c = @pos
+    $pos_c = @pos  #posの保存
     @pos = (@pos + 1) % 2  #先手(後手)→後手(先手)に変更
     @count -= 1
   end
