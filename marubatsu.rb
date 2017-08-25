@@ -5,7 +5,6 @@ pos = 0  #0→先手, 1→後手
 count = 9  #碁盤の空き数
 
 #碁盤の作成
-table = Array.new(3).map{Array.new(3, 0)}  #全体
 table = [[1,2,3], [4,5,6], [7,8,9]]
 
 #main
