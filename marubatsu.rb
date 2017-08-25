@@ -37,10 +37,10 @@ class Exe
   #入力された数値とのマッチング
   def isLeagal (input)
     num = 0
-    #count_s = 0
     for num in 1..9 do
       if input == num then  #正しい場所を入力したら
         @table[(num-1)/3][(num-1)%3] = @turn[@pos]  #指定された場所に〇または×を置く
+        $pos_c = @pos
         @pos = (@pos+1)%2  #先手(後手)→後手(先手)に変更
         @count -= 1
       elsif input > 9  #正しくない場所を入力したら
@@ -50,10 +50,41 @@ class Exe
     end
   end
 
+  def m_x (j,i,mark)  #探索用関数
+    if @table[j][i] == @turn[$pos_c]
+      mark += 1
+    end
+      return mark
+  end
+
   #3つ並んでいるか探索
-  #def search (input)
-    
-  #end
+  def search ()
+    mark_x = 0 #横
+    mark_y = 0 #縦
+    mark_xy = 0 #右下斜め
+    mark_yx = 0 #左下斜め
+    if @table[0][0] == @turn[$pos_c] then  #起点
+      mark_x += 1
+      mark_y += 1
+      mark_xy += 1
+      for i in 1..2 do
+        mark_x=m_x(0,i,mark_x)  #横
+        mark_y=m_x(i,0,mark_y)  #縦
+        mark_xy=m_x(i,i,mark_xy)  #斜め
+        if mark_x >= 3 || mark_y >= 3 || mark_xy >= 3 then
+          return true
+        end
+      end
+    elsif @table[0][1] ==  @turn[$pos_c] then  #起点
+      mark_y += 1
+      for i in 1..2 do
+        mark_y=m_x(0,i,mark_y)  #縦
+        if mark_y >= 3 then
+          return true
+        end
+      end
+    end
+  end
 
   #対戦終了
   def finish ()
@@ -78,6 +109,9 @@ while true do
   print "場所を入力してください＞"
   input = gets.to_i  #場所の入力(数値)
   if exe.isLeagal(input) == true then  #合法手か調べる
+    break
+  end
+  if exe.search() == true then
     break
   end
 end
