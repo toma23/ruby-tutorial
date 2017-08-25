@@ -54,7 +54,7 @@ class Exe
   end
 
   #3つ並んでいるか探索
-  def search ()
+  def search? ()
     mark_x = 0 #横
     mark_y = 0 #縦
     mark_xy = 0 #右下斜め
@@ -117,7 +117,7 @@ class Exe
   end
 
   #対戦終了
-  def count () #碁盤がすべて埋まったか
+  def count? () #碁盤がすべて埋まったか
     if @count == 0 then 
       return true
     end
