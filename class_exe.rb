@@ -11,20 +11,29 @@ class Exe
   def board
     print "\n"
     for k in 0..2 do
-      print "---+"
+      print "---+"  #一番上の枠
     end
     print "\n"
     for i in 0..2 do
       for j in 0..2 do
-        print " #{@table[i][j]} |"
-        if ((j + 1) % 3) == 0 then
-          print "\n"
-          for k in 1..3 do
+        print " #{@table[i][j]} |"  #数字の表示
+        if ((j + 1) % 3) == 0 then  #3つ数字を表示したら
+          print "\n"  #改行
+          for k in 1..3 do  #一番下の枠
             print "---+"
           end
           print "\n"
         end
       end
+    end
+  end
+
+  #キーボード入力の表示
+  def input
+    if @pos == 0 then
+      print "先手の入力＞"
+    elsif @pos == 1 then
+      print "後手の入力＞"
     end
   end
   
