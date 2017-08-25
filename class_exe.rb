@@ -13,7 +13,7 @@ class Exe
     for i in 0..2 do
       for j in 0..2 do
         print " #{@table[i][j]} |"
-        if ((j+1)%3) == 0 then
+        if ((j + 1) % 3) == 0 then
           print "\n"
           for k in 1..3 do
             print "---+"
@@ -29,13 +29,13 @@ class Exe
     num = 0
     for num in 1..9 do
       if input == num then  #正しい場所を入力したら
-        if @table[(num-1)/3][(num-1)%3] == @turn[@pos] || @table[(num-1)/3][(num-1)%3] == @turn[(@pos+1)%2] then  #指定した場所にすでに置かれていたら
+        if @table[(num - 1) / 3][(num - 1) % 3] == @turn[@pos] || @table[(num - 1) / 3][(num - 1) % 3] == @turn[(@pos + 1) % 2] then  #指定した場所にすでに置かれていたら
           print "指定された場所はすでに置かれています\n"
           break
         else
-          @table[(num-1)/3][(num-1)%3] = @turn[@pos]  #指定された場所に〇または×を置く
+          @table[(num - 1) / 3][(num - 1) % 3] = @turn[@pos]  #指定された場所に〇または×を置く
           $pos_c = @pos
-          @pos = (@pos+1)%2  #先手(後手)→後手(先手)に変更
+          @pos = (@pos + 1) % 2  #先手(後手)→後手(先手)に変更
           @count -= 1
         end
       elsif input > 9  || input < 1 #正しくない場所を入力したら
@@ -88,7 +88,7 @@ class Exe
       mark_yx += 1
       for i in 1..2 do
         mark_y = m_x(i, 2, mark_y)  #縦
-        mark_yx = m_x(i, 2-i, mark_yx)  #斜め
+        mark_yx = m_x(i, 2 - i, mark_yx)  #斜め
         if mark_y >= 3 || mark_yx >= 3 then
           return true
         end
