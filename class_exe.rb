@@ -25,7 +25,7 @@ class Exe
   end
   
   #入力された数値とのマッチング
-  def isLeagal (input)
+  def legal? (input)
     num = 0
     for num in 1..9 do
       if input == num then  #正しい場所を入力したら
