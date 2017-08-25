@@ -10,6 +10,10 @@ class Exe
   #碁盤の表示
   def board
     print "\n"
+    for k in 0..2 do
+      print "---+"
+    end
+    print "\n"
     for i in 0..2 do
       for j in 0..2 do
         print " #{@table[i][j]} |"
