@@ -50,7 +50,8 @@ class Exe
     end
   end
 
-  def m_x (j, i, mark)  #探索用関数
+  #探索用関数
+  def m_x (j, i, mark)
     if @table[j][i] == @turn[$pos_c]
       mark += 1
     end
@@ -154,7 +155,7 @@ while true do
   if exe.isLeagal(input) == true then  #合法手か調べる
     break
   end
-  if exe.search() == true || exe.count then
+  if exe.search() == true || exe.count then  #3つ並んだか，碁盤に置く場所がなくなったらループを抜ける
     break
   end
 end
