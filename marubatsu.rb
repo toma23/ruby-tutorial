@@ -50,7 +50,7 @@ class Exe
     end
   end
 
-  def m_x (j,i,mark)  #探索用関数
+  def m_x (j, i, mark)  #探索用関数
     if @table[j][i] == @turn[$pos_c]
       mark += 1
     end
@@ -68,33 +68,51 @@ class Exe
       mark_y += 1
       mark_xy += 1
       for i in 1..2 do
-        mark_x = m_x(0,i,mark_x)  #横
-        mark_y = m_x(i,0,mark_y)  #縦
-        mark_xy = m_x(i,i,mark_xy)  #斜め
+        mark_x = m_x(0, i, mark_x)  #横
+        mark_y = m_x(i, 0, mark_y)  #縦
+        mark_xy = m_x(i, i, mark_xy)  #斜め
         if mark_x >= 3 || mark_y >= 3 || mark_xy >= 3 then
           return true
         end
       end
-    elsif @table[1][0] ==  @turn[$pos_c] then  #起点
-      mark_x += 1
-      for i in 1..2 do
-        mark_x = m_x(0,i,mark_x)  #横
-        if mark_x >= 3 then
-          return true
-        end
-      end
-=begin
-    elsif @table[0][2] ==  @turn[$pos_c] then  #起点
+    elsif @table[0][1] ==  @turn[$pos_c] then  #起点
       mark_y += 1
-      mark_yx += 1
       for i in 1..2 do
-        mark_y=m_x(0,i,mark_y)  #縦
-        mark_yx=m_x(i,i,mark_yx)  #斜め
+        mark_y = m_x(i, 1, mark_y)  #縦
         if mark_y >= 3 then
           return true
         end
       end
-=end
+    elsif @table[0][2] ==  @turn[$pos_c] then  #起点
+      mark_y += 1
+      mark_yx += 1
+      for i in 1..2 do
+        mark_y = m_x(i, 2, mark_y)  #縦
+        if mark_y >= 3 then
+          return true
+        end
+      end
+      mark_yx = m_x(1, 1, mark_yx)  #斜め
+      mark_yx = m_x(2, 0, mark_yx)  #斜め
+      if mark_yx >= 3 then
+        return true
+      end
+    elsif @table[1][0] ==  @turn[$pos_c] then  #起点
+      mark_x += 1
+      for i in 1..2 do
+        mark_x = m_x(1, i, mark_x)  #横
+        if mark_x >= 3 then
+          return true
+        end
+      end
+    elsif @table[2][0] ==  @turn[$pos_c] then  #起点
+      mark_x += 1
+      for i in 1..2 do
+        mark_x = m_x(2, i, mark_x)  #横
+        if mark_x >= 3 then
+          return true
+        end
+      end
     end
   end
 
