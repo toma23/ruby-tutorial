@@ -15,7 +15,7 @@ e = Exe.new(table, turn, pos, count)
 #1回の対局動作をループ
 while true do
   e.board
-  print "場所を入力してください＞"
+  e.input
   input = gets.to_i  #場所の入力(数値)
   if e.legal?(input) == false then  #合法手か調べる
     next  #合法手でなければ，碁盤に〇×を置かない（e.moveの処理をスキップする）
