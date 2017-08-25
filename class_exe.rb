@@ -136,7 +136,7 @@ class Exe
   end
 
   def finish #どちらかが勝ったとき
-    if @count > 0 then
+    if @count >= 0 then
       print "\n---------試合終了---------\n"
 
       if $pos_c == 0 then 
