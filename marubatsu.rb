@@ -75,11 +75,11 @@ class Exe
           return true
         end
       end
-    elsif @table[0][1] ==  @turn[$pos_c] then  #起点
-      mark_y += 1
+    elsif @table[1][0] ==  @turn[$pos_c] then  #起点
+      mark_x += 1
       for i in 1..2 do
-        mark_y = m_x(i,0,mark_y)  #縦
-        if mark_y >= 3 then
+        mark_x = m_x(0,i,mark_x)  #横
+        if mark_x >= 3 then
           return true
         end
       end
@@ -130,16 +130,13 @@ exe = Exe.new(table, turn, pos, count)
 
 #1回の対局動作をループ
 while true do
-  if exe.count == true then
-    break
-  end
   exe.board
   print "場所を入力してください＞"
   input = gets.to_i  #場所の入力(数値)
   if exe.isLeagal(input) == true then  #合法手か調べる
     break
   end
-  if exe.search() == true then
+  if exe.search() == true || exe.count then
     break
   end
 end
