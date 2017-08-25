@@ -45,8 +45,8 @@ class Exe
     end
   end
 
-  #探索用関数
-  def m_x (j, i, mark)
+  #マークの数を数える関数
+  def mark (j, i, mark)
     if @table[j][i] == @turn[$pos_c]
       mark += 1
     end
@@ -64,9 +64,9 @@ class Exe
       mark_y += 1
       mark_xy += 1
       for i in 1..2 do
-        mark_x = m_x(0, i, mark_x)  #横
-        mark_y = m_x(i, 0, mark_y)  #縦
-        mark_xy = m_x(i, i, mark_xy)  #斜め
+        mark_x = mark(0, i, mark_x)  #横
+        mark_y = mark(i, 0, mark_y)  #縦
+        mark_xy = mark(i, i, mark_xy)  #斜め
         if mark_x >= 3 || mark_y >= 3 || mark_xy >= 3 then
           return true
         end
@@ -76,7 +76,7 @@ class Exe
       mark_y = 0
       mark_y += 1
       for i in 1..2 do
-        mark_y = m_x(i, 1, mark_y)  #縦
+        mark_y = mark(i, 1, mark_y)  #縦
         if mark_y >= 3 then
           return true
         end
@@ -87,8 +87,8 @@ class Exe
       mark_y += 1
       mark_yx += 1
       for i in 1..2 do
-        mark_y = m_x(i, 2, mark_y)  #縦
-        mark_yx = m_x(i, 2 - i, mark_yx)  #斜め
+        mark_y = mark(i, 2, mark_y)  #縦
+        mark_yx = mark(i, 2 - i, mark_yx)  #斜め
         if mark_y >= 3 || mark_yx >= 3 then
           return true
         end
@@ -98,7 +98,7 @@ class Exe
       mark_x = 0
       mark_x += 1
       for i in 1..2 do
-        mark_x = m_x(1, i, mark_x)  #横
+        mark_x = mark(1, i, mark_x)  #横
         if mark_x >= 3 then
           return true
         end
@@ -108,7 +108,7 @@ class Exe
       mark_x = 0
       mark_x += 1
       for i in 1..2 do
-        mark_x = m_x(2, i, mark_x)  #横
+        mark_x = mark(2, i, mark_x)  #横
         if mark_x >= 3 then
           return true
         end
